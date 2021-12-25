@@ -10,13 +10,10 @@ function receiveLog(req, res) {
     logger.create(req.body, (error, data) => {
         if (error) {
             console.log("error when try to add log in db ", error);
-
-            const socket = io.connect(`http://localhost:8080/`);
-            socket.emit('logs', "bipbop");
-
             return res.json(error)
         } else {
             console.log("user add to db");
+            global.io.emit('logs', data);
             res.json(data)
         }
     })

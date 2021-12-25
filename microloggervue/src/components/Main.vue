@@ -1,17 +1,21 @@
 <template>
   <div class="main">
    <small>{{logs}}</small>
+   <br/>
    <small>{{messages}}</small>
   </div>
 </template>
 
 <script>
+import io from 'socket.io-client';
 
 export default {
   name: 'Main',
  data: () => ({
     error: "",
+    socket : io('localhost:3001'),
     logs: [],
+    messages: [],
   }),
   mounted() {
     fetch("http://localhost:3001/logs")
@@ -19,6 +23,10 @@ export default {
       .then(result => {
         this.logs = result;
       });
+     this.socket.on('logs', (data) => {
+            this.messages = [...this.messages, data];
+            // you can also do this.messages.push(data)
+        });
   },
 }
 </script>

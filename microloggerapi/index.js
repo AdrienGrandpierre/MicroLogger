@@ -3,6 +3,14 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*',
+    }
+});
+global.io = io
+
 //import database
 const mongoose = require('mongoose');
 const database = require('./server/database/db');
@@ -39,6 +47,6 @@ mongoose
 	
 app.use('/', apiRouter)
 
-app.listen(port, () => {
+server.listen(port, () => {
 	console.log(`Api available http://localhost:${port}`)
 })
