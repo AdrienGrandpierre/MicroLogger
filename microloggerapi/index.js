@@ -12,7 +12,6 @@ const apiRouter = require('./server/routes');
 
 const port = process.env.PORT || 3000
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -37,7 +36,7 @@ mongoose
 			console.log('Database could not be connected : ' + error)
 		}
 	)
-
+	
 app.use('/', apiRouter)
 
 app.listen(port, () => {
