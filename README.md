@@ -2,9 +2,11 @@
 
 This project contains : 
 
-Front => vue.js.
-Back => express.
-DB => mongodb.
+Front => vue.js
+
+Back => express
+
+DB => mongodb
 
 
 ## Project setup
