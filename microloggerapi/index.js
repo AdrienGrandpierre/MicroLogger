@@ -11,10 +11,6 @@ const io = require('socket.io')(server, {
 });
 global.io = io
 
-//import database
-const mongoose = require('mongoose');
-const database = require('./server/database/db');
-
 //import routes
 const apiRouter = require('./server/routes');
 
@@ -31,19 +27,6 @@ app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Credentials', 'true');
 	next();
 });
-
-//set up mongodb
-mongoose.Promise = global.Promise;
-mongoose
-	.connect(process.env.DB_URL, database)
-	.then(
-		() => {
-			console.log('Database connected sucessfully !')
-		},
-		error => {
-			console.log('Database could not be connected : ' + error)
-		}
-	)
 	
 app.use('/', apiRouter)
 

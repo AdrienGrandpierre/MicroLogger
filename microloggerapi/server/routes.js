@@ -1,6 +1,5 @@
 const express = require('express')
 const { receiveLog, getLogs } = require('./controllers/logger/logger')
-const loggerSchema = require('./models/logger-schema')
 const router = express.Router()
 
 router.get('/', function (req, res) {
