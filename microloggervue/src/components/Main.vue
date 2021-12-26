@@ -1,8 +1,6 @@
 <template>
   <div class="main">
    <small>{{logs}}</small>
-   <br/>
-   <small>{{messages}}</small>
   </div>
 </template>
 
@@ -15,7 +13,6 @@ export default {
     error: "",
     socket : io('localhost:3001'),
     logs: [],
-    messages: [],
   }),
   mounted() {
     fetch("http://localhost:3001/logs")
@@ -24,7 +21,7 @@ export default {
         this.logs = result;
       });
      this.socket.on('logs', (data) => {
-            this.messages = [...this.messages, data];
+            this.logs = [...this.logs, data];
             // you can also do this.messages.push(data)
         });
   },
