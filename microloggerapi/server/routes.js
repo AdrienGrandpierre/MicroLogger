@@ -1,5 +1,5 @@
 const express = require('express')
-const { receiveLog, getLogs } = require('./controllers/logger/logger')
+const { receiveLog, getLogs, receiveLogJson } = require('./controllers/logger/logger')
 const router = express.Router()
 
 router.get('/', function (req, res) {
@@ -7,6 +7,8 @@ router.get('/', function (req, res) {
 })
 
 router.post('/addlog', receiveLog)
+
+router.post('/addlogjson', receiveLogJson)
 
 router.get('/logs', getLogs)
 
