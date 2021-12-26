@@ -21,6 +21,13 @@ async function getLogs(req, res) {
 
     let data = fs.readFileSync(logsFilePath, 'utf8')
     data = data.split('\n')
+    console.log(data);
+
+    //format data
+    //
+    
+    //
+
     res.status(200).send(data)
 }
 
