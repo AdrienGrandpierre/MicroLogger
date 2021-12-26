@@ -1,6 +1,8 @@
 const io = require('socket.io-client');
 
 function receiveLog(req, res) {
+    res.status(200).send("Ok")
+
     console.log("receive something");
 
     console.log(req.body);
@@ -8,13 +10,7 @@ function receiveLog(req, res) {
 }
 
 async function getLogs(req, res) {
-    logger.find({}, (error, data) => {
-        if (error) {
-            return res.json(error)
-        } else {
-            res.json(data)
-        }
-    })
+    res.status(200).send("Ok")
 }
 
 module.exports = {

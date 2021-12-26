@@ -1,12 +1,20 @@
 # MicroLogger
 
+Git tree
+
+````
+└───main
+    ├───filelog
+    └───mongodb
+```
+
 This project contains : 
 
 Front => vue.js
 
 Back => express
 
-DB => mongodb
+DB => mongodb OR logs.log file depend on your branch
 
 
 ## Project setup
