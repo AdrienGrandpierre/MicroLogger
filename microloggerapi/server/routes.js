@@ -8,8 +8,6 @@ router.get('/', function (req, res) {
 
 router.post('/addlog', receiveLog)
 
-router.post('/addlogjson', receiveLogJson)
-
 router.get('/logs', getLogs)
 
 module.exports = router
