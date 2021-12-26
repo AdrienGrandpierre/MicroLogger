@@ -20,10 +20,8 @@ function receiveLog(req, res) {
 async function getLogs(req, res) {
 
     let data = fs.readFileSync(logsFilePath, 'utf8')
-
-    console.log(data);
-
-    res.status(200).send("ok")
+    data = data.split('\n')
+    res.status(200).send(data)
 }
 
 module.exports = {
