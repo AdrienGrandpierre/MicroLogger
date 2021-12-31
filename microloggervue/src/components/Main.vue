@@ -1,30 +1,30 @@
 <template>
   <div class="main">
-   <small>{{logs}}</small>
+    <small>{{ logs }}</small>
   </div>
 </template>
 
 <script>
-import io from 'socket.io-client';
+import io from "socket.io-client";
 
 export default {
-  name: 'Main',
- data: () => ({
+  name: "Main",
+  data: () => ({
     error: "",
-    socket : io('localhost:3001'),
+    socket: io("localhost:3001"),
     logs: [],
   }),
   mounted() {
     fetch("http://localhost:3001/logs")
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         this.logs = result;
       });
-     this.socket.on('logs', (data) => {
-            this.logs = [...this.logs, data];
-        });
+    this.socket.on("logs", (data) => {
+      this.logs = [...this.logs, data];
+    });
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
