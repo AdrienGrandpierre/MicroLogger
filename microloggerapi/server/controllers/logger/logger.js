@@ -35,14 +35,34 @@ async function getLogs(req, res) {
 
     let data = fs.readFileSync(logsFilePath, 'utf8')
     data = data.split('\n')
-    console.log(data);
+    data.pop()
 
-    //format data
-    //
+    let logs = []
+    data.forEach(log => {
+        logs.push({
+            ip: log.split(' - - ')[0],
+            date: log.match(/(\[.*\])/)[0],
+            reqinfo: log.match(/(".*?")/g)[0],
+            codehttp: log.match(/" [0-9]{3} [0-9]{1,} "/)[0].replaceAll('"', '').trim().split(' ')[0],
+            code: log.match(/" [0-9]{3} [0-9]{1,} "/)[0].replaceAll('"', '').trim().split(' ')[1],
+            resulr: log.match(/(".*?")/g)[1],
+            userAgent: log.match(/(".*?")/g)[2],
+        })
+    });
 
-    //
+    // maplog = data.map(x => x = {
+    //     ip: x.split(' - - ')[0],
+    //     date: x.match(/(\[.*\])/)[0],
+    //     reqinfo: x.match(/(".*?")/g)[0],
+    //     codehttp: x.match(/" [0-9]{3} [0-9]{1,} "/)[0].replaceAll('"', '').trim().split(' ')[0],
+    //     code: x.match(/" [0-9]{3} [0-9]{1,} "/)[0].replaceAll('"', '').trim().split(' ')[1],
+    //     resulr: x.match(/(".*?")/g)[1],
+    //     userAgent: x.match(/(".*?")/g)[2],
+    // })
 
-    res.status(200).send(data)
+    // console.log(maplog);
+
+    res.status(200).send(logs)
 }
 
 module.exports = {
