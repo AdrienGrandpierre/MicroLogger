@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <button @click="on_off()">On/Off</button>
     <Grid :datalogs="logs" :columns="gridColumns" :filter-key="searchQuery" />
   </div>
 </template>
@@ -15,6 +16,7 @@ export default {
   },
   data: () => ({
     error: "",
+    onOff: true,
     socket: io("localhost:3001"),
     logs: [],
     gridColumns: [
@@ -36,6 +38,17 @@ export default {
     this.socket.on("logs", (data) => {
       this.logs = [...this.logs, data];
     });
+  },
+  methods: {
+    on_off() {
+      if (this.onOff) {
+        this.socket.disconnect();
+        this.onOff = false;
+      } else {
+        this.socket.connect();
+        this.onOff = true;
+      }
+    },
   },
 };
 </script>
