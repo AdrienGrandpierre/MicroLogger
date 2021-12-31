@@ -1,10 +1,6 @@
 <template>
   <div class="main">
-    <Grid 
-      :datalogs="gridData"
-      :columns="gridColumns"
-      :filter-key="searchQuery"/>
-    <small>{{ logs }}</small>
+    <Grid :datalogs="logs" :columns="gridColumns" :filter-key="searchQuery" />
   </div>
 </template>
 
@@ -14,25 +10,22 @@ import Grid from "./Grid.vue";
 
 export default {
   name: "Main",
-  components:{
+  components: {
     Grid,
   },
   data: () => ({
     error: "",
     socket: io("localhost:3001"),
     logs: [],
-    gridColumns: ["ip", "date", "reqinfo", "codehttp", "code", "result", "userAgent"],
-          gridData: [
-            {
-              ip: "ip",
-              date: "date",
-              reqinfo: "reqinfo",
-              codehttp: "codehttp",
-              code: "code",
-              result: "result",
-              userAgent: "userAgent"
-            }
-          ]
+    gridColumns: [
+      "ip",
+      "date",
+      "reqinfo",
+      "codehttp",
+      "code",
+      "result",
+      "userAgent",
+    ],
   }),
   mounted() {
     fetch("http://localhost:3001/logs")
@@ -61,6 +54,6 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #00BDF0;
+  color: #00bdf0;
 }
 </style>
